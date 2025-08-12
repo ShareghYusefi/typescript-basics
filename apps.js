@@ -99,9 +99,14 @@ var Mammal = /** @class */ (function () {
         console.log("Mammal is eating.");
         return;
     };
+    Mammal.prototype.sleep = function () {
+        console.log("Mammal is sleeping.");
+        return;
+    };
     return Mammal;
 }());
 // We can inherit from mammal class using "extends" keyword
+// We can implement an interface definition to ensure our class returns the right object data type
 var Animal = /** @class */ (function (_super) {
     __extends(Animal, _super);
     function Animal(nameArg, ageArg, hasHairArg, isWarmBloodedArg) {
@@ -117,3 +122,17 @@ var Animal = /** @class */ (function (_super) {
 var cat = new Animal("Cat", 4, true, true);
 console.log(cat);
 console.log(cat.eat());
+// Aligator must follow Animal Interface
+var aligator = {
+    name: "Aligator",
+    age: 99,
+    hasHair: false,
+    isWarmBlooded: false,
+    eat: function () {
+        console.log("Aligator eating.");
+    },
+    sleep: function () {
+        console.log("Aligator sleeping.");
+    },
+};
+var dog = new Animal("Dog", 5, true, true);

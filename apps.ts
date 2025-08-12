@@ -116,10 +116,16 @@ class Mammal {
     console.log("Mammal is eating.");
     return;
   }
+
+  sleep(): void {
+    console.log("Mammal is sleeping.");
+    return;
+  }
 }
 
 // We can inherit from mammal class using "extends" keyword
-class Animal extends Mammal {
+// We can implement an interface definition to ensure our class returns the right object data type
+class Animal extends Mammal implements IAnimal {
   name: string;
   age: number;
 
@@ -140,3 +146,33 @@ class Animal extends Mammal {
 let cat = new Animal("Cat", 4, true, true);
 console.log(cat);
 console.log(cat.eat());
+
+// What is an Interface?
+// An interface define a custom data type. This can be used to type objects.
+
+// Interface for Animal objects
+// An animal should have the following properties and methods
+interface IAnimal {
+  name: string;
+  age: number;
+  hasHair: boolean;
+  isWarmBlooded: boolean;
+  eat(): void;
+  sleep(): void;
+}
+
+// Aligator must follow Animal Interface
+let aligator: IAnimal = {
+  name: "Aligator",
+  age: 99,
+  hasHair: false,
+  isWarmBlooded: false,
+  eat() {
+    console.log("Aligator eating.");
+  },
+  sleep() {
+    console.log("Aligator sleeping.");
+  },
+};
+
+let dog: IAnimal = new Animal("Dog", 5, true, true);
