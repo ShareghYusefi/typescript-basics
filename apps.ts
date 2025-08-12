@@ -132,7 +132,7 @@ class Animal extends Mammal implements IAnimal {
   // public: accessible within and outside of a class
   public name: string;
   // private: accessible only within the class
-  private age: number;
+  private _age: number;
   // protected: accessible within a class and it's subclasses
   protected hasTail: boolean;
 
@@ -145,13 +145,25 @@ class Animal extends Mammal implements IAnimal {
     // we can use "super" keyword to call the parent class (mammal) constructor
     super(hasHairArg, isWarmBloodedArg);
     this.name = nameArg;
-    this.age = ageArg;
+    this._age = ageArg;
+  }
+
+  // getter and setter methods for manipulating private properties
+  get age(): number {
+    return this._age;
+  }
+
+  set age(value: number) {
+    this._age = value;
   }
 }
 
 // creating an Animal instance
 let cat = new Animal("Cat", 4, true, true);
-console.log(cat);
+console.log("Cat age: " + cat.age); // 4
+cat.age = 9;
+console.log("Cat age after setter: " + cat.age); // 9
+
 console.log(cat.eat());
 
 // What is an Interface?

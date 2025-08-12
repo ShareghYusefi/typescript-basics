@@ -113,14 +113,27 @@ var Animal = /** @class */ (function (_super) {
         // we can use "super" keyword to call the parent class (mammal) constructor
         var _this = _super.call(this, hasHairArg, isWarmBloodedArg) || this;
         _this.name = nameArg;
-        _this.age = ageArg;
+        _this._age = ageArg;
         return _this;
     }
+    Object.defineProperty(Animal.prototype, "age", {
+        // getter and setter methods for manipulating private properties
+        get: function () {
+            return this._age;
+        },
+        set: function (value) {
+            this._age = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Animal;
 }(Mammal));
 // creating an Animal instance
 var cat = new Animal("Cat", 4, true, true);
-console.log(cat);
+console.log("Cat age: " + cat.age); // 4
+cat.age = 9;
+console.log("Cat age after setter: " + cat.age); // 9
 console.log(cat.eat());
 // Aligator must follow Animal Interface
 var aligator = {
