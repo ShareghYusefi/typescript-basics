@@ -74,17 +74,69 @@ let names: string[] = ["John", "Smith"];
 let person: [string, number, boolean] = ["John", 25, true];
 
 class Person {
+  // properties
   name: string;
   age: number;
   isStudent: boolean;
 
+  // constructor function used to initialize an object instance
   constructor(nameArg: string, ageArg: number, isStudentArg: boolean) {
     this.name = nameArg;
     this.age = ageArg;
     this.isStudent = isStudentArg;
   }
+
+  greet(): void {
+    console.log("Hello world!");
+    return;
+  }
 }
 
+// initialization a class = creating an object instance
+// new keyword is used to call the contructor of the Person class
 let person1 = new Person("John", 78, true);
 
 console.log(person1);
+
+// What is Inheritance?
+// When a class inherits properties and methods from another class
+
+// Parent class for a an animal can be mammal
+class Mammal {
+  // properties
+  hasHair: boolean;
+  isWarmBlooded: boolean;
+
+  constructor(hasHairArg: boolean, isWarmBloodedArg: boolean) {
+    this.hasHair = hasHairArg;
+    this.isWarmBlooded = isWarmBloodedArg;
+  }
+
+  eat(): void {
+    console.log("Mammal is eating.");
+    return;
+  }
+}
+
+// We can inherit from mammal class using "extends" keyword
+class Animal extends Mammal {
+  name: string;
+  age: number;
+
+  constructor(
+    nameArg: string,
+    ageArg: number,
+    hasHairArg: boolean,
+    isWarmBloodedArg: boolean
+  ) {
+    // we can use "super" keyword to call the parent class (mammal) constructor
+    super(hasHairArg, isWarmBloodedArg);
+    this.name = nameArg;
+    this.age = ageArg;
+  }
+}
+
+// creating an Animal instance
+let cat = new Animal("Cat", 4, true, true);
+console.log(cat);
+console.log(cat.eat());
